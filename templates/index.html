@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<div class="bannerContainer">
+    <div class="banner">
+        <h1>TOP 10</h1>
+    </div>
+    <div class="bannerScroll">
+        <marquee scrolldelay="10" scrollamount="12">[AAPL  =  Apple]   [MSFT = Microsoft]   [AMZN = Amazon]  [NVDA = Nvidia]   [GOOGL = Alphabet]  [META = Meta]   [TSLA = Tesla]   [UNH = UnitedHealthGroup]   [JNJ = Johnson & Johnson]   [XOM = Exxon Mobil]</marquee>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block body %}
+<div class="appWindow">
+    <div class="titleBorder">
+    <h2>S&P 500 Price Checker</h2></div>
+    <p>Please enter a ticker:</p>
+    <form action="/" method="POST" autocomplete="off">
+        <input type="text" name="symbol" id="symbol" required>
+        <div class="submit-container">
+            <input type="Submit" class="btn-grad" value="Get Price">
+        </div>
+    </form>
+    <div class="answerBorder">
+    {% if price %}
+        <p>Current Price: {{ price }}</p>
+        {% if yahoo_finance_link %}
+            <p>More stock info available <a href="{{ yahoo_finance_link }}" target="_blank">here</a></p>
+        {% endif %}
+    {% endif %}
+    {% if notInIndex %}
+        <p>{{ notInIndex }}</p>
+    {% endif %}
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}
